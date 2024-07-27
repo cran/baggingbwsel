@@ -1,6 +1,3 @@
-#' @importFrom grDevices topo.colors
-#' @importFrom graphics box contour image lines par persp points polygon rug
-#' @importFrom stats dnorm quantile var
 "sm.density" <- function(x, h,  model = "none", weights = NA, group = NA, ...) {
 
     x.name <- deparse(substitute(x))

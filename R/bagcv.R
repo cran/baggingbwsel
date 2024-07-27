@@ -18,7 +18,6 @@
 #' x <- rnorm(10^6)
 #' bagcv(x, 5000, 100, 0.01, 1, 1000, 2)
 #' 
-#' @importFrom foreach %dopar%
 #' @export
 bagcv <-
 function(x,r,s,h0,h1,nb=r,ncores=parallel::detectCores())

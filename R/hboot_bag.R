@@ -18,9 +18,6 @@
 #' set.seed(1)
 #' x <- rnorm(10^5)
 #' hboot_bag(x, 5000, 10, 1000, lower=0.001, upper=1, ncores=2)
-#'
-#' @useDynLib baggingbwsel
-#' @importFrom Rcpp sourceCpp
 #' 
 #' @export
 hboot_bag <- function(x, m=n, N=1, nb=1000L, g, lower, upper, ncores=parallel::detectCores(logical=FALSE))

@@ -22,10 +22,13 @@
 
 .onAttach <- function(library, pkg)
 {
-    ## we can't do this in .onLoad
-    #unlockBinding(".sm.Options", asNamespace("sm"))
-    packageStartupMessage("Package 'sm', version 2.2-5.6: type help(sm) for summary information")
-    invisible()
+    pkg.info <- drop( read.dcf(file = system.file("DESCRIPTION", package = "baggingbwsel"),
+                               fields = c("Title", "Version", "Date") ))
+    packageStartupMessage( 
+      # paste0(" Package baggingbwsel: ", pkg.info["Title"], ",\n"),
+      "\n Package baggingbwsel: Bagging Bandwidth Selection\n",
+      " in Kernel Density and Regression Estimation,\n",
+      paste0(" version ", pkg.info["Version"], " (built on ", pkg.info["Date"], ").\n"))
 }
 
 
@@ -33,20 +36,4 @@ isMatrix <- function(x) length(dim(x)) == 2
 
 isInteger <- function(x) all(x == round(x))
 
-sm.script <- function(name, path)
-{
-    if (missing(path)) path <- system.file("scripts", package = "sm")
-    else path <- as.character(substitute(path))
-    if (missing(name)) {
-        file.show(file.path(path, "index.doc"))
-    } else {
-        name <- as.character(substitute(name))
-        if(length(name) == 3 && name[1] == "<-")
-            name <- paste(name[2:3], collapse="_")
-        file <- file.path(path, paste(name, ".q", sep = ""))
-        if(sm.options()$show.script)
-          file.show(file, title=name, header=paste('script: ',name))
-        source(file)
-    }
-    invisible()
-}
+

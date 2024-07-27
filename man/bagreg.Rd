@@ -2,9 +2,19 @@
 % Please edit documentation in R/bagreg.R
 \name{bagreg}
 \alias{bagreg}
-\title{Bagged CV bandwidth selector for Nadaraya-Watson estimator}
+\title{Bagged CV bandwidth selector for local polynomial kernel regression.}
 \usage{
-bagreg(x, y, r, s, h0, h1, nb = r, ncores = parallel::detectCores())
+bagreg(
+  x,
+  y,
+  r,
+  s,
+  h0,
+  h1,
+  nb = r,
+  ncores = parallel::detectCores(),
+  poly.index = 0
+)
 }
 \arguments{
 \item{x}{Covariate vector.}
@@ -22,15 +32,18 @@ bagreg(x, y, r, s, h0, h1, nb = r, ncores = parallel::detectCores())
 \item{nb}{Positive integer. Number of bins to use in cross-validation.}
 
 \item{ncores}{Positive integer. Number of cores with which to parallelize the computations.}
+
+\item{poly.index}{Non-negative integer defining local constant (0) or local 
+linear (1) smoothing. Default value: 0 (Nadaraya-Watson estimator).}
 }
 \value{
 Bagged CV bandwidth.
 }
 \description{
-Bagged CV bandwidth selector for Nadaraya-Watson estimator
+Bagged CV bandwidth selector for local polynomial kernel regression.
 }
 \details{
-Bagged cross-validation bandwidth selector for the Nadaraya-Watson estimator.
+Bagged cross-validation bandwidth selector for local polynomial kernel regression.
 }
 \examples{
 set.seed(1)
